@@ -1,5 +1,6 @@
 package lib.ui.components;
 
+import lib.Res;
 import lib.ui.contracts.UIElementWithContent;
 
 /**

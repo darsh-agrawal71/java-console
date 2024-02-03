@@ -3,16 +3,10 @@ package app.views;
 import app.Res;
 import app.components.HeaderComponent;
 import lib.input.ListInputPrompt;
-import lib.input.PromptResult;
-import lib.ui.components.Container;
-import lib.ui.components.ListItem;
-import lib.ui.components.ListView;
-import lib.ui.components.SideEffect;
-import lib.ui.components.Spacer;
+import lib.ui.components.*;
 import lib.ui.contracts.DisplayableUIElement;
 import lib.ui.contracts.UIScreen;
 import lib.ui.navigation.Navigator;
-import lib.util.EnumUtils;
 
 import java.util.List;
 import java.util.function.Function;
@@ -31,12 +25,14 @@ public class HomeScreen implements UIScreen {
     }
 
     private DisplayableUIElement buildOptionList() {
-        List<ListItem> listItems = Stream.of(HomeScreenOptions.values()).map(new Function<HomeScreenOptions, ListItem>() {
-            @Override
-            public ListItem apply(HomeScreenOptions option) {
-                return new ListItem(option.getContent());
-            }
-        }).toList();
+        List<ListItem> listItems =
+                Stream.<HomeScreenOptions>of(HomeScreenOptions.values())
+                        .map(new Function<HomeScreenOptions, ListItem>() {
+                            @Override
+                            public ListItem apply(HomeScreenOptions homeScreenOptions) {
+                                return new ListItem(homeScreenOptions.getContent());
+                            }
+                        }).toList();
         return new ListView(listItems);
     }
 
@@ -45,8 +41,8 @@ public class HomeScreen implements UIScreen {
             @Override
             public void execute(SideEffect.Displayer displayer) {
                 ListInputPrompt prompt = new ListInputPrompt();
-                PromptResult<Integer> result = prompt.promptUserWithPrompt(Res.strings.enter_choice);
-                HomeScreenOptions choice = EnumUtils.convertIntToEnum(result.getResult(), HomeScreenOptions.class);
+                ListInputPrompt.Result result = prompt.promptUserWithPrompt(Res.strings.enter_choice);
+                HomeScreenOptions choice = result.<HomeScreenOptions>convertResultToEnum(HomeScreenOptions.class);
                 handleChoice(choice);
             }
         });

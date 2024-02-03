@@ -1,5 +1,7 @@
 package app.models;
 
+import app.Res;
+
 public class Student {
     private static final char DELIMITER = ';';
 
@@ -57,6 +59,29 @@ public class Student {
         this.sport = sport;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Name: ");
+
+        builder
+                .append(getName())
+                .append("\n")
+                .append("Grade: ")
+                .append(getGrade())
+                .append("Division: ")
+                .append(getDivision())
+                .append("Roll number: ")
+                .append(getRollNo())
+                .append("Sport: ")
+                .append(getSport());
+
+        return builder.toString();
+    }
+
+    public String dataToString() {
+        return name.toUpperCase() + DELIMITER + grade + DELIMITER + division.toUpperCase() + DELIMITER + rollNo + DELIMITER + sport.toUpperCase();
+    }
+
     public static class Builder {
         private static final int IDX_FIELD_NAME = 0;
         private static final int IDX_FIELD_GRADE = 1;
@@ -68,6 +93,17 @@ public class Student {
         private String division;
         private String rollNo;
         private String sport;
+
+        public static Student fromString(String str) {
+            String[] fields = str.split(String.valueOf(DELIMITER));
+            return new Builder()
+                    .setName(fields[IDX_FIELD_NAME])
+                    .setGrade(fields[IDX_FIELD_GRADE])
+                    .setDivision(fields[IDX_FIELD_DIVISION])
+                    .setRollNo(fields[IDX_FIELD_ROLL_NO])
+                    .setSport(fields[IDX_FIELD_SPORT])
+                    .createStudent();
+        }
 
         public Builder setName(String name) {
             this.name = name;
@@ -98,30 +134,5 @@ public class Student {
             return new Student(name, grade, division, rollNo, sport);
         }
 
-        public static Student fromString(String str) {
-            String[] fields = str.split(String.valueOf(DELIMITER));
-            return new Builder()
-                    .setName(fields[IDX_FIELD_NAME])
-                    .setGrade(fields[IDX_FIELD_GRADE])
-                    .setDivision(fields[IDX_FIELD_DIVISION])
-                    .setRollNo(fields[IDX_FIELD_ROLL_NO])
-                    .setSport(fields[IDX_FIELD_SPORT])
-                    .createStudent();
-        }
-
-    }
-
-    @Override
-    public String toString() {
-        return name + " [" +
-                "Grade: " + grade +
-                ", Division: " + division +
-                ", Roll number: " + rollNo +
-                ", Sport: " + sport +
-                ']';
-    }
-
-    public String dataToString() {
-        return name.toUpperCase() + DELIMITER + grade + DELIMITER + division.toUpperCase() + DELIMITER + rollNo + DELIMITER + sport.toUpperCase();
     }
 }

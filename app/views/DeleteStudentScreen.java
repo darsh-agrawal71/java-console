@@ -13,7 +13,7 @@ import lib.ui.components.Text;
 import lib.ui.contracts.DisplayableUIElement;
 
 import lib.ui.contracts.UIScreen;
-import lib.ui.services.ServiceCallback;
+import lib.services.ServiceCallback;
 import lib.util.ItemBoxer;
 
 public class DeleteStudentScreen implements UIScreen {

@@ -1,11 +1,17 @@
 package lib.ui.components;
 
+import lib.Res;
 import lib.ui.contracts.DisplayableUIElement;
 import lib.ui.contracts.UIElementWithContent;
 
-
+/**
+ * Displays text to the screen, can be aligned left, center, or right.
+ */
 public class Text implements DisplayableUIElement, UIElementWithContent {
 
+    /**
+     * Specifies the alignment of text
+     */
     public enum Align {
         LEFT,
         CENTER,
@@ -35,7 +41,7 @@ public class Text implements DisplayableUIElement, UIElementWithContent {
         final StringBuilder builder = new StringBuilder();
 
         // The remaining space that will be filled with
-        final int remainingSpace = Res.dimen.screen_width - this.text.length();
+        final int remainingSpace = Screen.width - this.text.length();
 
         switch (this.align) {
             case LEFT: {
