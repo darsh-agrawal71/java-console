@@ -1,7 +1,7 @@
 package lib.ui.navigation;
 
 import lib.ui.contracts.UIScreen;
-import lib.util.ConsoleClearer;
+import lib.ui.components.Screen;
 
 import java.util.Stack;
 
@@ -24,8 +24,7 @@ public final class Navigator {
     }
 
     private static void internalNavigate(UIScreen otherScreen) {
-        ConsoleClearer consoleClearer = new ConsoleClearer();
-        consoleClearer.clearConsole();
+        Screen.clear();
         otherScreen.build().display();
     }
 }

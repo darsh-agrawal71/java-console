@@ -3,7 +3,7 @@ package app.components;
 import app.Res;
 import app.models.Student;
 import lib.input.StringInputPrompt;
-import lib.ui.contracts.Form;
+import lib.input.Form;
 
 public class StudentDetailsForm implements Form<Student> {
     @Override

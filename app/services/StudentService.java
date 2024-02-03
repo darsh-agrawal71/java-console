@@ -1,8 +1,8 @@
 package app.services;
 
 import app.models.Student;
-import lib.ui.components.Res;
-import lib.ui.services.ServiceCallback;
+import lib.Res;
+import lib.services.ServiceCallback;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

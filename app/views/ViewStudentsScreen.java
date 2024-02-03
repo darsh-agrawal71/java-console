@@ -10,7 +10,7 @@ import lib.ui.components.ListItem;
 import lib.ui.components.ListView;
 import lib.ui.contracts.DisplayableUIElement;
 import lib.ui.contracts.UIScreen;
-import lib.ui.services.ServiceCallback;
+import lib.services.ServiceCallback;
 import lib.util.ItemBoxer;
 
 import java.util.List;

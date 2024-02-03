@@ -1,5 +1,6 @@
 package lib.ui.components;
 
+import lib.Res;
 import lib.ui.contracts.DisplayableUIElement;
 import lib.ui.contracts.UIElementWithContent;
 
@@ -23,7 +24,7 @@ public class Border implements DisplayableUIElement, UIElementWithContent {
         SET,
         /**
          * This method appends the first border character, appends content, and appends the last border character.<br>
-         * Recommended method as it has minimal data loss (only truncates when content is greater than {@value Res.dimen#screen_width}).
+         * Recommended method as it has minimal data loss (only truncates when content is greater than {@value Screen#width}).
          */
         APPEND;
     }
@@ -71,7 +72,7 @@ public class Border implements DisplayableUIElement, UIElementWithContent {
     }
 
     private String useSetMethod() {
-        final int LAST_CHAR_INDEX = Res.dimen.screen_width - 1;
+        final int LAST_CHAR_INDEX = Screen.width - 1;
         final int FIRST_CHAR_INDEX = 0;
         // Leave space for first border
         final StringBuilder builder = new StringBuilder(this.child.getContent().substring(1));
@@ -79,7 +80,7 @@ public class Border implements DisplayableUIElement, UIElementWithContent {
 
         // Fill string with null characters if string is smaller than Res.dimen.SCREEN_WIDTH
         // If string is bigger, no null characters are there, instead string will get cut off.
-        builder.setLength(Res.dimen.screen_width);
+        builder.setLength(Screen.width);
 
         // Set the first character to border
         builder.setCharAt(FIRST_CHAR_INDEX, this.thickness.getVisualCharacter());
@@ -94,7 +95,7 @@ public class Border implements DisplayableUIElement, UIElementWithContent {
     }
 
     private String useAppendMethod() {
-        final int LAST_CHAR_INDEX = Res.dimen.screen_width - 1;
+        final int LAST_CHAR_INDEX = Screen.width - 1;
         final StringBuilder builder = new StringBuilder();
         String content;
 
@@ -107,7 +108,7 @@ public class Border implements DisplayableUIElement, UIElementWithContent {
 
         // Fill string with null characters if string is smaller than Res.dimen.SCREEN_WIDTH
         // If string is bigger, no null characters are there, instead string will get cut off.
-        builder.setLength(Res.dimen.screen_width);
+        builder.setLength(Screen.width);
 
         // Set the last character to border
         builder.setCharAt(LAST_CHAR_INDEX, this.thickness.getVisualCharacter());
